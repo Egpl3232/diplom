@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Промокоды</title>
+    <link rel="stylesheet" href="/static/admin/index.css">
+</head>
+
+<body>
+    {% include 'admin/header.html' %}
+    <section class="promos">
+        <div class="s_wrapper">
+            <form action="/admin/promo/add" method="post">
+                <div class="promo">
+                    <input type="text" name='code' placeholder="Код промокода">
+                    <input type="number" min="0" max="100" name='disc' placeholder="Скидка (0-100)">
+                    <input type="number" min="0" max="1000" name="ost" placeholder="Количество использований">
+                    <input type="submit" class="btn add_btn" value="Добавить">
+                </div>
+            </form>
+            {% for promo in promos %}
+
+            <div class="promo">
+                <p>{{promo.key}}</p>
+                <p>{{promo.discount}}%</p>
+                <p>{{promo.count}} шт.  </p>
+                <a href="/admin/promo/del?id={{promo.id}}">
+                    <button class="btn del_btn">Удалить</button>
+                </a>
+            </div>
+
+            {% endfor %}
+
+
+        </div>
+    </section>
+</body>
+
+</html>

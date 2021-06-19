@@ -1,0 +1,427 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Hype.Rock_Shop_Sales</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {% include 'linkstop.html' %}
+</head>
+
+<body>
+
+    <div class="wrapper cart">
+
+        <!-- Start of header area -->
+        {% include 'header.html' %}
+
+        <!--breadcumb area start -->
+        <div class="breadcumb-area overlay pos-rltv">
+            <div class="bread-main">
+                <div class="bred-hading text-center">
+                    <h5>Оформление заказа</h5>
+                </div>
+                <ol class="breadcrumb">
+                    <li class="home"><a title="Go to Home Page" href="index.html">Главная</a></li>
+                    <li class="active">Корзина</li>
+                </ol>
+            </div>
+        </div>
+        <!--breadcumb area end -->
+
+        <!--cart-checkout-area start -->
+        <div class="cart-checkout-area  pt-30">
+            <div class="container">
+                <div class="row">
+                    <div class="product-area">
+                        <div class="title-tab-product-category">
+                            <div class="col-md-12 text-center pb-60">
+                                <ul class="nav heading-style-3" role="tablist">
+                                    <li role="presentation" class="active shadow-box"><a href="#cart"
+                                            aria-controls="cart" role="tab" data-toggle="tab"><span>01</span>Корзина</a>
+                                    </li>
+                                    <li role="presentation" class="shadow-box"><a href="#checkout"
+                                            aria-controls="checkout" role="tab"
+                                            data-toggle="tab"><span>02</span>Информация о покупателе</a></li>
+                                    <li role="presentation" class="shadow-box"><a href="#complete-order"
+                                            aria-controls="complete-order" role="tab"
+                                            data-toggle="tab"><span>03</span>Оформление заказа</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="col-sm-12">
+                            <div class="content-tab-product-category pb-70">
+                                <!-- Tab panes -->
+                                <div class="tab-content">
+                                    <div role="tabpanel" class="tab-pane fade in active" id="cart">
+                                        <!-- cart are start-->
+                                        <div class="cart-page-area">
+
+                                            <div class="table-responsive mb-20">
+                                                <table class="shop_table-2 cart table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="product-thumbnail ">Фото</th>
+                                                            <th class="product-name ">Название товара</th>
+                                                            <th class="product-price ">Размер</th>
+                                                            <th class="product-quantity">Кол-во</th>
+                                                            <th class="product-subtotal ">Цена</th>
+                                                            <th class="product-remove">Удалить</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {% for item in cart %}
+
+                                                        <tr class="cart_item">
+                                                            <td class="item-img">
+                                                                <a
+                                                                    href="/product?id={{ item.product.product_size.id }}"><img
+                                                                        src="/static/uploads/{{item.product.product_size.primary_img}}"
+                                                                        alt="">
+                                                                </a>
+                                                            </td>
+                                                            <td class="item-title"> <a
+                                                                    href="/product?id={{ item.product.product_size.id }}">{{item.product.product_size.name}}</a>
+                                                            </td>
+                                                            <td class="item-price"> {{item.product.size}} </td>
+                                                            <td class="item-qty">
+                                                                <div class="cart-quantity">
+                                                                    <div class="product-qty">
+                                                                        <div class="cart-quantity">
+                                                                            <div class="cart-plus-minus">
+                                                                                <input value="{{ item.amount }}"
+                                                                                    name="qtybutton"
+                                                                                    class="cart-plus-minus-box"
+                                                                                    type="text">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="total-price"><strong>
+                                                                    {{item.product.product_size.price * item.amount}}
+                                                                    ₽</strong></td>
+                                                            <td class="remove-item"><a
+                                                                    href="/basket/del?id={{item.id}}"><i
+                                                                        class="fa fa-trash-o"></i></a></td>
+                                                        </tr>
+
+                                                        {% endfor %}
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+
+                                            <div class="cart-bottom-area">
+                                                <div class="row">
+                                                    <div class="col-md-8 col-sm-7 col-xs-12">
+                                                        <div class="update-coupne-area">
+                                                            <div class="coupn-area">
+                                                                {% if promocode %}
+                                                                <div class="catagory-title cat-tit-5 mb-20">
+                                                                    <h3>Промокод</h3>
+                                                                    <p>Промокод активирован.</p>
+                                                                </div>
+                                                                <div class="input-box input-box-2 mb-20">
+                                                                    <input type="text" placeholder="{{ promocode.key }}"
+                                                                        class="info" name="subject" disabled>
+                                                                    <input type="text" name="promocode"
+                                                                        value="{{ promocode.key }}" hidden form="paymentform">
+                                                                </div>
+                                                                {% else %}
+                                                                <div class="catagory-title cat-tit-5 mb-20">
+                                                                    <h3>Промокод</h3>
+                                                                    <p>Введите промокод, если он у вас имеется.</p>
+                                                                </div>
+                                                                <div class="input-box input-box-2 mb-20">
+                                                                    <input type="text" placeholder="Промокод"
+                                                                        class="info" name="promocode" form="promofld">
+                                                                </div>
+                                                                <form id='promofld' action="/cart" method="get">
+                                                                    <input type="submit" class="btn-def btn2"
+                                                                        value="Применить промокод">
+                                                                </form>
+                                                                {% endif %}
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4 col-sm-5 col-xs-12">
+                                                        <div class="cart-total-area">
+                                                            <div class="catagory-title cat-tit-5 mb-20 text-right">
+                                                                <h3>ИТОГО</h3>
+                                                            </div>
+                                                            <div class="sub-shipping">
+                                                                <p>Первоначальная цена<span>{{ bp }} ₽</span></p>
+                                                                <p>Доставка<span>300 ₽</span></p>
+                                                                {% if promocode %}
+                                                                <p>Скидка <span>- {{ discountvalue }} ₽</span></p>
+                                                                {% endif %}
+                                                            </div>
+                                                            <div class="process-cart-total">
+                                                                <p>Цена <span>{{ total }} ₽</span></p>
+                                                            </div>
+                                                            <div class="process-checkout-btn text-right">
+                                                                <a class="btn-def btn2" href="#checkout"
+                                                                    aria-controls="checkout" role="tab"
+                                                                    data-toggle="tab" aria-expanded="false">Оформить
+                                                                    заказ</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- cart are end-->
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane  fade in " id="checkout">
+                                        <!-- Checkout are start-->
+                                        <div class="checkout-area">
+                                            <div class="">
+                                                <div class="row">
+                                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                                        <div class="coupne-customer-area mb50">
+                                                            <div class="panel-group" id="accordion" role="tablist"
+                                                                aria-multiselectable="true">
+                                                                <div class="panel panel-checkout">
+                                                                    <div class="panel-heading" role="tab"
+                                                                        id="headingThree">
+                                                                    </div>
+                                                                    <div id="collapseThree"
+                                                                        class="panel-collapse collapse" role="tabpanel"
+                                                                        aria-labelledby="headingThree">
+                                                                        <div class="panel-body coupon-body">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-6 col-xs-12">
+                                                                <div class="billing-details">
+                                                                    <div class="contact-text right-side">
+                                                                        <h2>Адрес доставки</h2>
+                                                                            <div class="row">
+                                                                                <div
+                                                                                    class="col-md-6 col-sm-6 col-xs-12">
+                                                                                    <div class="input-box mb-20">
+                                                                                        <label>Имя <em>*</em></label>
+                                                                                        <input type="text" name="name"
+                                                                                            class="info" placeholder=""
+                                                                                            required form="paymentform">
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div
+                                                                                    class="col-md-6 col-sm-6 col-xs-12">
+                                                                                    <div class="input-box mb-20">
+                                                                                        <label>Фамилия<em>*</em></label>
+                                                                                        <input type="text" name="surname"
+                                                                                            class="info" placeholder=""
+                                                                                            required form="paymentform">
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div
+                                                                                    class="col-md-6 col-sm-6 col-xs-12">
+                                                                                    <div class="input-box mb-20">
+                                                                                        <label>Email <em>*</em></label>
+                                                                                        <input type="email" name="email"
+                                                                                            class="info" placeholder=""
+                                                                                            required form="paymentform">
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div
+                                                                                    class="col-md-6 col-sm-6 col-xs-12">
+                                                                                    <div class="input-box mb-20">
+                                                                                        <label>Телефон<em>*</em></label>
+                                                                                        <input type="text" name="phone"
+                                                                                            class="info" placeholder=""
+                                                                                            required form="paymentform">
+                                                                                    </div>
+                                                                                </div>
+
+
+
+                                                                                <div
+                                                                                    class="col-md-12 col-sm-12 col-xs-12">
+                                                                                    <div class="input-box mb-20">
+                                                                                        <label>Город <em>*</em></label>
+                                                                                        <input type="text" name="city"
+                                                                                            class="info mb-10"
+                                                                                            placeholder="" required form="paymentform">
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div
+                                                                                    class="col-md-12 col-sm-12 col-xs-12">
+                                                                                    <div class="input-box mb-20">
+                                                                                        <label>Улица <em>*</em></label>
+                                                                                        <input type="text" name="street"
+                                                                                            class="info" placeholder=""
+                                                                                            required form="paymentform">
+                                                                                    </div>
+                                                                                </div>
+
+
+                                                                                <div
+                                                                                    class="col-md-6 col-sm-6 col-xs-12">
+                                                                                    <div class="input-box">
+                                                                                        <label>Строение<em>*</em></label>
+                                                                                        <input type="text"
+                                                                                            name="building" class="info"
+                                                                                            placeholder="" required form="paymentform">
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div
+                                                                                    class="col-md-6 col-sm-6 col-xs-12">
+                                                                                    <div class="input-box">
+                                                                                        <label>Квартира<em>*</em></label>
+                                                                                        <input type="text" name="flat"
+                                                                                            class="info mb-10"
+                                                                                            placeholder="" required form="paymentform">
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div
+                                                                                    class="col-md-12 col-sm-12 col-xs-12">
+                                                                                    <div class="input-box mb-20">
+                                                                                        <label>Индекс <em>*</em></label>
+                                                                                        <input type="text"
+                                                                                            name="zipcode"
+                                                                                            class="info mb-10"
+                                                                                            placeholder="" required form="paymentform">
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div
+                                                                                    class="col-md-12 col-sm-12 col-xs-12">
+                                                                                    <div
+                                                                                        class="process-checkout-btn text-right">
+                                                                                        <a class="btn-def btn2"
+                                                                                            href="#complete-order"
+                                                                                            aria-controls="checkout"
+                                                                                            role="tab" data-toggle="tab"
+                                                                                            aria-expanded="false">Оформить
+                                                                                            заказ</a>
+                                                                                    </div>
+                                                                                </div>
+
+
+                                                                            </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6 col-xs-12">
+                                                                <div class="billing-details">
+                                                                    <div class="right-side">
+                                                                        <div class="ship-acc clearfix">
+                                                                            <div class="ship-toggle pb20">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Checkout are end-->
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane  fade in" id="complete-order">
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <div class="checkout-payment-area">
+                                                    <div class="checkout-total mt20">
+                                                        <h3>Ваш заказ</h3>
+                                                        <form action="#" method="post">
+                                                            <div class="table-responsive">
+                                                                <table class="checkout-area table">
+                                                                    <thead>
+                                                                        <tr class="cart_item check-heading">
+                                                                            <td class="ctg-type"> Товар</td>
+                                                                            <td class="cgt-des"> Цена</td>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        {% for item in cart %}
+                                                                        <tr class="cart_item check-item prd-name">
+                                                                            <td class="ctg-type">
+                                                                                {{item.product.product_size.name}} x
+                                                                                {{item.amount}}шт.
+                                                                            </td>
+                                                                            <td class="cgt-des">
+                                                                                {{item.product.product_size.price * item.amount}}
+                                                                                ₽</td>
+                                                                        </tr>
+                                                                        {% endfor %}
+                                                                        {% if promocode %}
+                                                                        <tr class="cart_item">
+                                                                            <td class="ctg-type crt-total"> Скидка</td>
+                                                                            <td class="cgt-des prc-total">
+                                                                                {{ discountvalue }} ₽</td>
+                                                                        </tr>
+                                                                        {% endif %}
+
+                                                                        <tr class="cart_item">
+                                                                            <td class="ctg-type crt-total"> Итого</td>
+                                                                            <td class="cgt-des prc-total"> {{ total }} ₽
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                    <div class="payment-section mt-20 clearfix">
+                                                        <div class="pay-toggle">
+                                                            
+                                                                <div class="pay-type-total">
+                                                                    <div class="pay-type">
+                                                                        <input type="radio" id="pay-toggle01" name="pay"
+                                                                            value="1" form="paymentform" disabled>
+                                                                        <label for="pay-toggle01">Онлайн платеж</label>
+                                                                    </div>
+                                                                    <div class="pay-type">
+                                                                        <input type="radio" id="pay-toggle02" name="pay"
+                                                                            value="2" form="paymentform">
+                                                                        <label for="pay-toggle02">Наложенный
+                                                                            платеж</label>
+                                                                    </div>
+
+                                                                </div>
+                                                                <div class="input-box mt-20">
+                                                                    <!-- <a class="btn-def btn2" href="#">Оплатить</a> -->
+                                                                    <input class="btn-def btn2" form='paymentform' type="submit"
+                                                                        value="Оплатить" style="background: #333; color: white;">
+                                                                </div>
+                                                                <form action="/order" id='paymentform' method="post"></form>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--cart-checkout-area end-->
+
+        {% include 'footer.html' %}
+
+
+    </div>
+    <!-- Body main wrapper end -->
+
+    {% include 'linksbot.html' %}
+
+</body>
+
+</html>

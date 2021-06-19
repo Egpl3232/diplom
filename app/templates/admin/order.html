@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=1080, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/admin/index.css">
+    <title>Добавить товар</title>
+</head>
+
+<body>
+    {% include 'admin/header.html' %}
+
+    {% for o in items %}
+    <div class="order_content">
+        <h3><a href="/product?id={{o.ps.product_size.id}}">{{o.ps.product_size.name}}</a></h3>
+        <p> {{o.ps.size}} размер </p>
+        <p> {{ o.q }} шт.</p>
+    </div>
+    {% endfor %}
+    <div class="order_content">
+        <p>Имя: {{delivery.name}}</p>
+        <p>Фамилия: {{delivery.surname}}</p>
+        <p>Email: {{delivery.email}}</p>
+        <p>Телефон: {{delivery.phone}}</p>
+        <p>Город: {{delivery.city}}</p>
+        <p>Улица: {{delivery.street}}</p>
+        <p>Дом: {{delivery.build}}</p>
+        <p>Квартира: {{delivery.flat}}</p>
+        <p>Почтовый индекс: {{delivery.zipcode}}</p>
+    </div>
+    <div class="order_content">
+        <h2>Оплата: {% if order.pay_type == "1" %}
+            Предоплата
+            {% else %}
+            Наложенный платеж
+        {% endif %}</h2>
+        <h2>Промокод: {% if promocode %}{{promocode.key}} ({{promocode.discount}}%){% else %}Не использован{% endif %}</h2>
+        <h2>Сумма: {{order.total}} ₽</h2>
+    </div>
+
+    <div class="order_content" id='order_del'>
+        <a href="/admin/order/delete?id={{order.id}}">
+        <button class="del_btn">Удалить</button>
+        </a>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,149 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>{{product.name}} | Hype.Rock_Shop_Sales</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {% include 'linkstop.html' %}
+</head>
+
+<body>
+
+    <div class="wrapper sigle-product">
+
+        <!-- Start of header area -->
+        {% include 'header.html' %}
+        <!-- End of header area -->
+
+
+
+        <!--single-protfolio-area are start-->
+        <div class="single-protfolio-area ptb-70">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-7 col-sm-12 col-xs-12">
+                        <div class="portfolio-thumbnil-area">
+                            <div class="product-more-views">
+                                <div class="tab_thumbnail" data-tabs="tabs">
+                                    <div class="thumbnail-carousel">
+                                        <ul>
+                                            <li class="active">
+                                                <a href="#view11" class="shadow-box" aria-controls="view11"
+                                                    data-toggle="tab"><img src="/static/uploads/{{product.primary_img}}"
+                                                        alt="" /></a>
+                                            </li>
+                                            <li>
+                                                <a href="#view22" class="shadow-box" aria-controls="view22"
+                                                    data-toggle="tab"><img
+                                                        src="/static/uploads/{{product.secondary_img}}" alt="" /></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-content active-portfolio-area pos-rltv">
+                                <div role="tabpanel" class="tab-pane active" id="view11">
+                                    <div class="product-img">
+                                        <a class="fancybox" data-fancybox-group="group"
+                                            href="/static/uploads/{{product.primary_img}}"><img
+                                                src="/static/uploads/{{product.primary_img}}"
+                                                alt="{{product.name}}" /></a>
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="view22">
+                                    <div class="product-img">
+                                        <a class="fancybox" data-fancybox-group="group"
+                                            href="/static/uploads/{{product.secondary_img}}"><img
+                                                src="/static/uploads/{{product.secondary_img}}"
+                                                alt="{{product.name}}" /></a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-md-5 col-sm-12 col-xs-12">
+                        <div class="single-product-description">
+                            <div class="sp-top-des">
+                                <h3>{{product.name}}</h3>
+                                <div class="prodcut-ratting-price">
+                                    <div class="prodcut-price">
+                                        <div class="new-price"> {{product.price}} ₽ </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="sp-des">
+                                <p style="text-align: center; margin-top: 15px;">{{product.description}}</p>
+                                <p style="text-align: center; margin-top: 15px;">Для более точного подбора одежды
+                                    воспользуйтесь <span style=" color: #DA1A39;">нашей таблицей размеров,</span> либо
+                                    же обратитесь к нам по номеру телефона - <span style=" color: #DA1A39;">8 (968)
+                                        429-62-40</span></p>
+                            </div>
+                            <form action="/basket/add" method="post">
+                                <div class="sp-bottom-des">
+                                    <div class="single-product-option">
+                                        <div class="sort product-type">
+                                            <label>Размер: </label>
+                                            <select id="input-sort-size" name='size'>
+                                                {% for size in product.sizes %}
+                                                {% if size.ost <= 0 %}
+                                                <option value="{{size.id}}" disabled>{{size.size}} \ Остаток:
+                                                    {{size.ost}}</option>
+                                                {% else %}
+                                                <option value="{{size.id}}">{{size.size}} \ Остаток: {{size.ost}}
+                                                </option>
+                                                {% endif %}
+                                                {% endfor %}
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="quantity-area">
+                                        <label>КОЛ-ВО:</label>
+                                        <div class="cart-quantity">
+                                            <div class="product-qty">
+                                                <div class="cart-quantity">
+                                                    <div class="cart-plus-minus">
+                                                        <div class="dec qtybutton">-</div>
+                                                        <input type="text" value="1" name="qtybutton"
+                                                            class="cart-plus-minus-box">
+                                                        <div class="inc qtybutton">+</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="social-icon socile-icon-style-1">
+                                        <ul>
+                                            <li>
+                                                <input type="submit" class="add-cart add-cart-text a" value="Добавить">
+                                            </li>
+                                    
+
+                                        </ul>
+                                    </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--single-protfolio-area are start-->
+
+
+
+    {% include 'footer.html' %}
+
+    </div>
+    <!-- Body main wrapper end -->
+
+    {% include 'linksbot.html' %}
+</body>
+
+</html>

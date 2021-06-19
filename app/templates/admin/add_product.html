@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=1080, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/admin/index.css">
+    <title>Добавить товар</title>
+</head>
+<body>
+    {% include 'admin/header.html' %}
+    <section class="add_product">
+        <div class="ap_wrapper">
+            <form action="/admin/product/add" method="post" class='ap_form' enctype = "multipart/form-data">
+                <label for="">Название товара</label>
+                <input type="text" name="name" id="ap_name">
+                <label for="price">Цена</label>
+                <input type="number" name="price" id="ap_price">
+                <label for="description">Описание товара</label>
+                <textarea name="description" id="desc" cols="30" rows="5"></textarea>
+                <label for="">Подкатегория</label>
+                <select name="scat" id="">
+                    {% for cat in subcats %}
+                        <option value="{{cat.id}}">
+                            {{cat.name}}
+                        </option>
+                    {% endfor %}
+                <label for="file1">Первое фото</label>
+                <input type="file" name="file1" class='ap_file'>
+                <label for="file2">Второе фото</label>
+                <input type="file" name="file2" class='ap_file'>
+                <input type="submit" value="Добавить">
+            </form>
+        </div>
+    </section>
+</body>
+</html>

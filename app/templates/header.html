@@ -1,0 +1,129 @@
+<header class="header-area header-wrapper">
+    <div class="header-top-bar black-bg clearfix">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-3 col-xs-6">
+                    <div class="login-register-area">
+                        <ul>
+                            <li><a href="tel:89684296240">8 (968) 429-62-40</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 hidden-xs">
+                    <div class="social-search-area text-center">
+                        <div class="social-icon socile-icon-style-2">
+                            <ul>
+                                <li><a href="https://www.instagram.com/hype.rock_shop_sales/?igshid=jhebwtv888m5"
+                                        title="instagrm"><i class="fa fa-instagram"></i></a> </li>
+                                <li><a href="https://vk.com/hyperockshop" title="vk"><i class="fa fa-vk"></i></a> </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-6">
+                    <div class="cart-currency-area login-register-area text-right">
+                        </li>
+                        <li>
+                            <div class="header-cart">
+                                <div class="cart-icon"> <a href="/cart">Корзина<i class="zmdi zmdi-shopping-cart"></i></a>
+                                    <span>{{cart|length}}</span> </div>
+                                <div class="cart-content-wraper">
+
+                                    <!-- Один товар -->
+                                    {% for item in cart %}
+                                        
+                                    <div class="cart-single-wraper">
+                                        <div class="cart-img">
+                                            <a href="#"><img src="/static/uploads/{{item.product.product_size.primary_img}}" alt=""></a>
+                                        </div>
+                                        <div class="cart-content">
+                                            <div class="cart-name"> <a href="/product?id={{item.product.product_size.id}}">{{item.product.product_size.name}}</a> </div>
+                                            <div class="cart-price"> {{item.product.product_size.price * item.amount}} ₽ </div>
+                                            <div class="cart-qty"> Кол-во: <span>{{item.amount}}</span> </div>
+                                        </div>
+                                        <div class="remove"> <a href="/basket/del?id={{item.id}}"><i class="zmdi zmdi-close"></i></a> </div>
+                                    </div>
+                                    {% endfor %}
+                                    
+
+                                    <div class="cart-subtotal"> Общая сумма: <span>{{cartprice}} ₽</span> </div>
+                                    <div class="cart-check-btn">
+                                        <div class="view-cart"> <a class="btn-def" href="/cart">В корзину</a> </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="sticky-header" class="header-middle-area">
+        <div class="container">
+            <div class="full-width-mega-dropdown">
+                <div class="row">
+                    <div class="col-md-2 col-sm-2">
+                        <div class="logo ptb-20"><a href="/">
+                                <img src="/static/images/logo/logo.png" alt="main logo"></a>
+                        </div>
+                    </div>
+                    <div class="col-md-7 col-sm-10 hidden-xs">
+                        <nav id="primary-menu">
+                            <ul class="main-menu">
+                                <li><a href="/shop">Каталог</a></li>
+                                <li><a href="/tracking">Отследить заказ</a></li>
+                                <li><a href="/shipping">Доставка и оплата</a></li>
+                                <li><a href="/aboutus">О нас</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="col-md-3 hidden-sm hidden-xs">
+                        <div class="search-box global-table">
+                            <div class="global-row">
+                                <!-- <div class="global-cell">
+                                    <form action="/shop">
+                                        <div class="input-box">
+                                            <input class="single-input" placeholder="Поиск" type="text" name="n">
+                                            <button class="src-btn"><i class="fa fa-search"></i></button>
+                                        </div>
+                                    </form>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- mobile-menu-area start -->
+                    <div class="mobile-menu-area">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <nav id="dropdown">
+                                        <ul>
+                                            <li><a href="/shop">Каталог</a></li>
+                                            <li><a href="/tracking">Отследить заказ</a></li>
+                                            <li><a href="/shipping">Доставка и оплата</a></li>
+                                            <li><a href="/aboutus">О нас</a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                                <div class="col-md-3 hidden-sm hidden-xs">
+                                    <div class="search-box global-table">
+                                        <div class="global-row">
+                                            <div class="global-cell">
+                                                <form action="/shop">
+                                                    <div class="input-box">
+                                                        <input class="single-input" placeholder="Поиск" type="text" name="n">
+                                                        <button class="src-btn"><i class="fa fa-search"></i></button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--mobile menu area end-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+</header>

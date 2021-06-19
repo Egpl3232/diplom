@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=1080, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/admin/index.css">
+    <title>Админ Панель</title>
+</head>
+
+<body>
+    {% include 'admin/header.html' %}
+    <section class="products">
+        <div class="p_wrapper">
+            <div class="product">
+                <p class="id">№</p>
+                <p class="name">Наименование</p>
+                <p class="ost">Кол-во продаж</p>
+                <p>Редактирование</p>
+            </div>
+            {% for product in products %}
+            
+            <div class="product">
+                <p class="id">{{product.id}}</p>
+                <p class="name"><a href="/product?id={{product.id}}">{{product.name}}</a></p>
+                <p class="ost">{{product.sales}}</p>
+                <a href="/admin/product/edit?id={{product.id}}">
+                    <button class="edit">Редактировать</button>
+                </a>
+            </div>
+
+            {% endfor %}
+
+        </div>
+    </section>
+    <section class="footer">
+        <a href="/admin/product/add"><button class="f_add">Добавить товар</button></a>
+    </section>
+</body>
+
+</html>

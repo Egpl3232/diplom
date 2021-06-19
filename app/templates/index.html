@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Hyper.Rock_Shop_Sales</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+   {% include 'linkstop.html' %}
+</head>
+
+
+
+<body>
+
+    <!-- Body main wrapper start -->
+    <div class="wrapper home-one">
+
+        <!-- Start of header area -->
+        {% include 'header.html' %}
+        <!-- End of header area -->
+
+        <!--slider area start-->
+        <div class="slider-area pos-rltv carosule-pagi cp-line">
+            <div class="active-slider">
+                <div class="single-slider pos-rltv">
+                    <div class="slider-img"><img src="static/images/intro.gif" alt=""></div>
+                    <div class="slider-content pos-abs">
+                    </div>
+                </div>
+                <div class="single-slider pos-rltv">
+                    <div class="slider-img"><img src="static/images/banner/1.png" alt=""></div>
+                    <div class="slider-content pos-abs">
+                    </div>
+                </div>
+                <div class="single-slider pos-rltv">
+                    <div class="slider-img"><img src="static/images/banner/2.png" alt=""></div>
+                    <div class="slider-content pos-abs">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--slider area start-->
+
+        <!--delivery service start-->
+        <div class="delivery-service-area pt-70">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="single-service shadow-box text-center">
+                            <img src="static/images/icons/instagram.png" />
+                            <h5>Постоянные розыгрыши в нашем Instagram</h5>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="single-service shadow-box text-center">
+                            <img src="static/images/icons/free-shipping.png" />
+                            <h5>Бесплатная доставка при заказе на 3000 рублей</h5>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="single-service shadow-box text-center">
+                            <img src="static/images/icons/refund.png" />
+                            <h5>Возможность возврата товара в течение 14 дней*</h5>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="single-service shadow-box text-center">
+                            <img src="static/images/icons/watch.png" />
+                            <h5>Работаем ежедневно с 12:00 до 22:00 (по мск)</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--delivery service start-->
+
+        <!--new arrival area start-->
+        {% include 'popular.html' %}
+        <!--new arrival area end-->
+
+        <!--best-product-area-start-->
+        <div class="best-product-area mt-70">
+            <div class="container">
+                <div class="best-product overlay  ptb-70">
+                    <div class="row">
+                        <div class="col-xs-12 best-heading text-center">
+                            <a class="view-all" href="/shop">Каталог</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--best-product-area-end-->
+
+        <!--discunt-featured-onsale-area start -->
+        <div class="discunt-featured-onsale-area pt-60">
+            <div class="container">
+                <div class="row">
+                    <div class="product-area tab-cars-style">
+                        <div class="title-tab-product-category">
+                            <div class="col-md-12 text-center">
+                                <ul class="nav mb-40 heading-style-2" role="tablist">
+                                    <li role="presentation" class="active"><a href="#newarrival"
+                                            aria-controls="newarrival" role="tab" data-toggle="tab">Новый товар</a></li>
+                                    <!-- <li role="presentation"><a href="#bestsellr" aria-controls="bestsellr" role="tab"
+                                            data-toggle="tab">Скидки</a></li> -->
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="content-tab-product-category">
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane fade in active" id="newarrival">
+                                    <div class="total-new-arrival new-arrival-slider-active carsoule-btn">
+                                        {% for new in newprod %}
+                                        <div class="col-md-3">
+                                            <!-- single product start-->
+
+                                                
+                                            <div class="single-product">
+                                                <div class="product-img">
+                                                    <div class="product-label">
+                                                        <div class="new">Новинка!</div>
+                                                    </div>
+                                                    <div class="single-prodcut-img  product-overlay pos-rltv">
+                                                        <a href="/product?id={{new.id}}"> <img alt=""
+                                                                src="/static/uploads/{{new.primary_img}}"
+                                                                class="primary-image"> <img alt=""
+                                                                src="/static/uploads/{{new.secondary_img}}"
+                                                                class="secondary-image"> </a>
+                                                    </div>
+                                                    <div>
+                                                    </div>
+                                                </div>
+                                                <div class="product-text">
+                                                    <div class="prodcut-name"> 
+                                                        <a href="/product?id={{new.id}}">
+                                                        {{new.name}}
+                                                        </a> 
+                                                </div>
+                                                    <div class="prodcut-ratting-price">
+                                                        <div class="prodcut-price">
+                                                            <div class="new-price"> {{new.price}}₽ </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            
+                                            
+                                            <!-- single product end-->
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--discunt-featured-onsale-area end-->
+
+
+        <!--blog area are start-->
+        
+        <!-- footer area start-->
+        {% include 'footer.html' %}
+
+    </div>
+    <!-- Body main wrapper end -->
+
+{% include 'linksbot.html' %}
+
+</body>
+
+</html>

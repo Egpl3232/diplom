@@ -1,0 +1,134 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Hype.Rock_Shop_Sales</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {% include 'linkstop.html' %}
+</head>
+
+<body>
+
+    <div class="wrapper shop">
+
+        {% include 'header.html' %}
+
+        <div class="breadcumb-area breadcumb-2 overlay pos-rltv">
+            <div class="bread-main">
+                <div class="bred-hading text-center">
+                    <h5>Полный каталог</h5>
+                </div>
+                <ol class="breadcrumb">
+                    <li class="home"><a title="Go to Home Page" href="/">Главная</a></li>
+                    <li class="active">Каталог</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="shop-main-area ptb-70">
+            <div class="container">
+                <div class="row">
+                    <!--shop sidebar start-->
+                    <div class="col-md-3 col-sm-4 col-xs-12">
+                        <div class="row">
+                            <div class="shop-sidebar">
+                                <!--single aside start-->
+                                <aside class="single-aside catagories-aside">
+                                    <div class="heading-title aside-title pos-rltv">
+                                        <h5 class="uppercase">Категории</h5>
+                                    </div>
+                                    <div id="cat-treeview" class="product-cat">
+                                        <ul>
+                                            {% for cat in cats %}
+                                                
+                                            <li class="closed"><a href="#">{{cat.name}} ({{cat.subcategorys|length}})</a>
+                                                <ul>
+                                                    {% for sc in cat.subcategorys %}
+                                                    <li><a href="/shop?sc={{sc.id}}">{{sc.name}}</a></li>
+                                                    {% endfor %}
+                                                </ul>
+                                            </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </aside>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!--main-shop-product start-->
+                    <div class="col-md-9 col-sm-8 col-xs-12">
+                        <div class="clearfix"></div>
+                        <div class="shop-total-product-area clearfix mt-35">
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <!--tab grid are start-->
+                                <div role="tabpanel" class="tab-pane fade in active" id="grid">
+                                    <div class="total-shop-product-grid">
+                                        {% for p in plist %}
+                                            
+                                        <div class="col-md-4 col-sm-6 item">
+                                            <div class="single-product">
+                                                <div class="product-img">
+                                                    <div class="product-label red">
+                                                    </div>
+                                                    <div class="single-prodcut-img  product-overlay pos-rltv">
+                                                        <a href="/product?id={{p.id}}"> 
+                                                            <img 
+                                                                alt=""
+                                                                src="/static/uploads/{{p.primary_img}}" 
+                                                                class="primary-image"
+                                                            >
+                                                            <img 
+                                                                alt="" 
+                                                                src="/static/uploads/{{p.secondary_img}}"
+                                                                class="secondary-image"
+                                                            > 
+                                                        </a>
+                                                    </div>
+                                                    <div>
+                                                    </div>
+                                                </div>
+                                                <div class="product-text">
+                                                    <div class="prodcut-name"> 
+                                                        <a href="/product?id={{p.id}}">
+                                                            {{p.name}}
+                                                        </a> 
+                                                    </div>
+                                                    <div class="prodcut-ratting-price">
+                                                        <div class="prodcut-price">
+                                                            <div class="new-price"> {{p.price}} ₽ </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <!--shop grid are end-->
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--main-shop-product start-->
+            </div>
+        </div>
+    </div>
+
+
+    {% include 'footer.html' %}
+
+    </div>
+    {% include 'linksbot.html' %}
+</body>
+
+</html>

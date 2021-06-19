@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=1080, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/admin/index.css">
+    <title>Добавить товар</title>
+</head>
+<body>
+    {% include 'admin/header.html' %}
+    <section class="add_product">
+        <div class="ap_wrapper">
+            <form action="/admin/categories/add_cat" method="POST" class='ap_form'>
+                <h2>Добавить категорию</h2>
+                <label for="">Название категории</label>
+                <input type="text" name="name" id="ap_name">
+                <input type="submit" value="Добавить">
+            </form>
+            <form action="/admin/categories/add_subcat" method="post" class='ap_form' enctype = "multipart/form-data">
+                <h2>Добавить подкатегорию</h2>
+                <label for="">Выберите категорию</label>
+                <select name="cat" id="">
+                    {% for cat in categories %}
+                        <option value="{{cat.id}}">
+                            {{cat.name}}
+                        </option>
+                    {% endfor %}
+                </select>
+                <label for="">Название подкатегории</label>
+                <input type="text" name="name" id="ap_name">
+                <input type="submit" value="Добавить">
+            </form>
+            <form action="/admin/categories/delete_cat" method="POST" class='ap_form'>
+                <h2>Удалить категорию</h2>
+                <label for="">Название категории</label>
+                <select name="cat" id="">
+                    {% for cat in categories %}
+                        <option value="{{cat.id}}">
+                            {{cat.name}}
+                        </option>
+                    {% endfor %}
+                </select>
+                <input type="submit" value="Удалить">
+            </form>
+            <form action="/admin/categories/delete_subcat" method="post" class='ap_form' enctype = "multipart/form-data">
+                <h2>Удалить подкатегорию</h2>
+                <label for="">Выберите категорию</label>
+                <select name="scat" id="">
+                    {% for scat in scats %}
+                        <option value="{{scat.id}}">
+                            {{scat.name}}
+                        </option>
+                    {% endfor %}
+                </select>
+                <input type="submit" value="Удалить">
+            </form>
+        </div>
+    </section>
+</body>

@@ -1,0 +1,50 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Hyper.Rock_Shop_Sales</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% include 'linkstop.html' %}
+</head>
+
+<body>
+   
+    <div class="wrapper about-us">
+       
+         {% include 'header.html' %}
+        <div class="about-us-area ptb-70">
+            <div class="container">
+                <div class="row" style='height: 100vh'>
+                    <div class="col-xs-12 text-center">
+                       <div class="heading-title heading-style pos-rltv mb-50 text-center">
+                           <h5 class="uppercase">Отследить заказ</h5>
+                       </div>
+                   </div>
+                   <div class="widget_1track"></div>
+                           </div>
+                       </div>
+                   </div>
+                </div>
+            </div>
+        </div>
+
+        {% include 'footer.html' %}          
+        
+    </div> 
+    <script>
+        (function(e,t,n){
+            if(e.getElementById(n))return;
+            var i=e.getElementsByTagName(t)[0];
+            var r=e.createElement(t);
+            r.id=n;
+            r.src="//1track.ru/public/widget/widget.js";
+            i.parentNode.insertBefore(r,i)
+        })(document,"script","widget-1track-js");
+        </script>
+    {% include 'linksbot.html' %}
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=1080, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/admin/index.css">
+    <title>Размеры/Остатки</title>
+</head>
+
+<body>
+    {% include 'admin/header.html' %}
+    <section class="sizes">
+        <div class="s_wrapper">
+            <div class="size">
+                <p class="name">Размер</p>
+                <p class="ost">Остаток</p>
+                <p>Действие</p>
+            </div>
+
+            {% for size in sizes %}
+            <form action="/admin/product/sizes/edit" method="post">
+            <div class="size">
+                <input type="hidden" name="id" value="{{size.id}}">
+                <input type="text" disabled value="{{size.size}}">
+                <input type="number" name='ost' value={{size.ost}}>
+                <input type="submit" class="edit" value="Редактировать">
+            </div>
+            </form>
+            {% endfor %}
+
+
+            <form action="/admin/product/sizes/add" method="post">
+
+                <div class="size">
+                    <input type="hidden" name="pid" value="{{p}}">
+                    <input type="text" name="size">
+                    <input type="number" name="ost">
+                    <input type="submit" class="edit" value="Добавить">
+                </div>
+
+            </form>
+        </div>
+    </section>
+</body>
+</html>

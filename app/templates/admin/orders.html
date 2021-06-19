@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=1080, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/admin/index.css">
+    <title>Добавить товар</title>
+</head>
+<body>
+    {% include 'admin/header.html' %}
+    <section class="products">
+        <div class="p_wrapper">
+            <div class="product">
+                <p class="id">№</p>
+                <p class="ost">Сумма</p>
+                <p>Информация о заказе</p>
+            </div>
+            {% for order in orders %}
+            
+            <div class="product">
+                <p class="id">{{order.id}}</p>
+                <p class="ost">{{order.total}} ₽</p>
+                <a href="/admin/order?id={{order.id}}">
+                    <button class="edit">Информация о заказе</button>
+                </a>
+            </div>
+
+            {% endfor %}
+
+        </div>
+    </section>
+</body>
+</html>

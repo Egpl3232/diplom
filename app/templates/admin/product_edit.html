@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=1080, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/admin/index.css">
+    <title>Редактировать товар</title>
+</head>
+<body>
+    {% include 'admin/header.html' %}
+    <section class="add_product">
+        <div class="ap_wrapper">
+            <form action="/admin/product/edit" method="post" class='ap_form' enctype = "multipart/form-data">
+                <input type="hidden" name="id" value={{product.id}}>
+                <label for="">Название товара</label>
+                <input type="text" name="name" id="ap_name" value="{{product.name}}">
+                <label for="price">Цена</label>
+                <input type="number" name="price" id="ap_price" value="{{product.price}}">
+                <label for="description">Описание товара</label>
+                <textarea name="description" id="desc" cols="30" rows="5">{{product.description}}</textarea>
+                <label for="">Подкатегория</label>
+                <select name="scat" id="">
+                    {% for cat in subcats %}
+                        {% if cat.id == product.subcategory %}
+                        <option value="{{cat.id}}" selected>
+                            {{cat.name}}
+                        </option>
+                        {% else %}
+                        <option value="{{cat.id}}">
+                            {{cat.name}}
+                        </option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+                <label for="file1">Первое фото : {{product.primary_img}}</label>
+                <input type="file" name="file1" class='ap_file'>
+                <label for="file2">Второе фото : {{product.secondary_img}}</label>
+                <input type="file" name="file2" class='ap_file'>
+                <input type="submit" class="btn edit_btn fs" value="Редактировать">
+            </form>
+            <a href="/admin/product/sizes?id={{product.id}}">
+                <button class="btn edit_btn fs">Остатки/Размеры</button>
+                </a>
+                <a href="/admin/product/delete?id={{product.id}}">
+                    <button class="btn del_btn fs">
+                        Удалить
+                    </button>
+                </a>
+        </div>
+    </section>
+    <section class="add_size">
+        <div class="as_wrapper">
+
+        </div>
+    </section>
+</body>
+</html>
